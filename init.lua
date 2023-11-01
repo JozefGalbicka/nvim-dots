@@ -121,16 +121,17 @@ require("lazy").setup({
 
     'neovim/nvim-lspconfig',
 
-    -- nvim-cmp itself
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
             'L3MON4D3/LuaSnip', -- Snippet engine
-
             -- Completion sources for nvim-cmp
-            'hrsh7th/cmp-nvim-lsp',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-path',
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/cmp-buffer' },
+		    { "kdheepak/cmp-latex-symbols" },
+            --
         }
     },
 
@@ -276,6 +277,8 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'latex_symbols' },
+        { name = 'buffer' },
     },
 }
 
