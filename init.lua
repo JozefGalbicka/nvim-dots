@@ -115,13 +115,19 @@ require("lazy").setup({
   },
 
   'neovim/nvim-lspconfig',
-  'L3MON4D3/LuaSnip', -- Snippets plugin
 
-  'hrsh7th/cmp-nvim-lsp',
-  'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-  'hrsh7th/cmp-path',
-
+  -- nvim-cmp itself
+  {
   'hrsh7th/nvim-cmp',
+    dependencies = {
+      'L3MON4D3/LuaSnip', -- Snippet engine
+
+      -- Completion sources for nvim-cmp
+      'hrsh7th/cmp-nvim-lsp',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-path',
+    }
+  },
 
   {'vimwiki/vimwiki',
     init = function()
