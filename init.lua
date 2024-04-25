@@ -153,6 +153,14 @@ require("lazy").setup({
                 }
             }  
         end
+    },
+
+    {
+        'sindrets/diffview.nvim'
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = true
     }
 })
 
