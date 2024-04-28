@@ -163,6 +163,7 @@ require("lazy").setup({
     {
         'lewis6991/gitsigns.nvim',
         config = true
+    },
     {
         "cuducos/yaml.nvim",
         ft = { "yaml" }, -- optional
@@ -170,7 +171,12 @@ require("lazy").setup({
             "nvim-treesitter/nvim-treesitter",
             "nvim-telescope/telescope.nvim", -- optional
         },
+    },
     {
+        'nanozuki/tabby.nvim',
+        event = 'VimEnter',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        opts = {}
     }
 })
 
@@ -379,3 +385,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+-- TABBY MAPPINGS
+vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>l", ":tabn<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>h", ":tabp<CR>", { noremap = true })
+-- move current tab to previous position
+vim.api.nvim_set_keymap("n", "<leader>tmh", ":-tabmove<CR>", { noremap = true })
+-- move current tab to next position
+vim.api.nvim_set_keymap("n", "<leader>tml", ":+tabmove<CR>", { noremap = true })
