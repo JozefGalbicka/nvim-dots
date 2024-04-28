@@ -36,8 +36,6 @@ require("lazy").setup({
     -- Fancy look incoming alert 
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
-    { "vim-airline/vim-airline-themes"},
-
     { 
         "nvim-tree/nvim-tree.lua",
         cmd = "NvimTreeToggle",
@@ -57,7 +55,11 @@ require("lazy").setup({
         cmd = "Colortils",
         config = true
     },
-    'vim-airline/vim-airline',
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {}
+    },
     {'akinsho/toggleterm.nvim', version = "*", config = true},
     {'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate",
@@ -210,8 +212,6 @@ vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 vim.wo.number = true
 
 vim.cmd.colorscheme "gruvbox"
-vim.cmd.AirlineTheme "base16_gruvbox_dark_medium"
---vim.g.airline_theme= "catppuccin"
 --vim.cmd.colorscheme "catppuccin"
 --require'nvim-tree'.setup {}
 --require 'colorizer'.setup {}
