@@ -22,7 +22,6 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 require("lazy").setup({
     -- Some defaults
-    { "folke/neoconf.nvim", cmd = "Neoconf" },
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -73,6 +72,7 @@ require("lazy").setup({
                 "bash",
                 "c",
                 --"diff",
+                "doxygen",
                 --"html",
                 --"javascript",
                 --"jsdoc",
@@ -91,7 +91,7 @@ require("lazy").setup({
                 --"typescript",
                 "vim",
                 --"vimdoc",
-                --"yaml",
+                "yaml",
             },
             --incremental_selection = {
             --  enable = true,
@@ -163,6 +163,14 @@ require("lazy").setup({
     {
         'lewis6991/gitsigns.nvim',
         config = true
+    {
+        "cuducos/yaml.nvim",
+        ft = { "yaml" }, -- optional
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-telescope/telescope.nvim", -- optional
+        },
+    {
     }
 })
 
@@ -273,6 +281,8 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+vim.cmd('autocmd FileType yaml setlocal indentkeys-=0#')
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
