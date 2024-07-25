@@ -367,7 +367,7 @@ cmp.setup {
 -----------------------------------------------------
 ----------- SHORTCUTS
 -----------------------------------------------------
-vim.api.nvim_set_keymap('n', '<leader>s', '<c-w>', { noremap = true })
+vim.keymap.set('n', '<leader>s', '<c-w>', { noremap = true })
 
 -- TELESCOPE
 local builtin = require('telescope.builtin')
@@ -443,17 +443,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- TABBY MAPPINGS
 vim.keymap.set('n', '<leader>ta', ':tabnew<CR>', {noremap = true})
-
---vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>l", ":tabn<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>h", ":tabp<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tr", ":TabRename ", { noremap = true })
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>to", ":tabonly<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>l", ":tabn<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>h", ":tabp<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tr", ":TabRename ", { noremap = true })
 -- move current tab to previous position
-vim.api.nvim_set_keymap("n", "<leader>tmh", ":-tabmove<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tmh", ":-tabmove<CR>", { noremap = true })
 -- move current tab to next position
-vim.api.nvim_set_keymap("n", "<leader>tml", ":+tabmove<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>tml", ":+tabmove<CR>", { noremap = true })
 -- end
 --
 require("dapui").setup()
