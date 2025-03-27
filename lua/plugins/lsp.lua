@@ -123,51 +123,52 @@ return {
                     }
                 },
             })
-                    --yaml = {
-                    --    validate = true,
-                    --    ---- disable the schema store
-                    --    schemaStore = {
-                    --      enable = false,
-                    --      url = "",
-                    --    },
-                    --    ---- manually select schemas
-                    --    --schemas = {
-                    --    --  ['https://json.schemastore.org/kustomization.json'] = 'kustomization.{yml,yaml}',
-                    --    --  ['https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json'] = 'docker-compose*.{yml,yaml}',
-                    --    --  ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"] = "argocd-application.yaml",
-                    --    --}
-                    --    schemas = {
-                    --        kubernetes = "*.yaml",
-                    --        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                    --        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-                    --        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-                    --        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                    --        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-                    --        ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
-                    --        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-                    --        ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
-                    --        ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
-                    --        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
-                    --        ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
-                    --        ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
-                    --    },
+            --yaml = {
+            --    validate = true,
+            --    ---- disable the schema store
+            --    schemaStore = {
+            --      enable = false,
+            --      url = "",
+            --    },
+            --    ---- manually select schemas
+            --    --schemas = {
+            --    --  ['https://json.schemastore.org/kustomization.json'] = 'kustomization.{yml,yaml}',
+            --    --  ['https://raw.githubusercontent.com/docker/compose/master/compose/config/compose_spec.json'] = 'docker-compose*.{yml,yaml}',
+            --    --  ["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"] = "argocd-application.yaml",
+            --    --}
+            --    schemas = {
+            --        kubernetes = "*.yaml",
+            --        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+            --        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+            --        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+            --        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+            --        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+            --        ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
+            --        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+            --        ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+            --        ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
+            --        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+            --        ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
+            --        ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+            --    },
 
-                    --    --schemaStore = {
-                    --    --    --url = "https://www.schemastore.org/api/json/catalog.json",
-                    --    --    enable = true
-                    --    --},
-                    --    --format = {
-                    --    --    enable = false,
-                    --    --},
-                    --    --hover = true,
-                    --    --completion = true,
+            --    --schemaStore = {
+            --    --    --url = "https://www.schemastore.org/api/json/catalog.json",
+            --    --    enable = true
+            --    --},
+            --    --format = {
+            --    --    enable = false,
+            --    --},
+            --    --hover = true,
+            --    --completion = true,
 
 
             -- Diagnostics.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {desc="Open diagnostics"}) vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc="goto prev diagnostic"})
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc="goto next diagnostic"})
-            vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, {desc = "diagnostic set locallist"}) -- CHECK WHAT THIS ONE EVEN DOES, originally mapped to <leader>q
+            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostics" })
+            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "goto prev diagnostic" })
+            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "goto next diagnostic" })
+            vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, { desc = "diagnostic set locallist" }) -- CHECK WHAT THIS ONE EVEN DOES, originally mapped to <leader>q
             -- end
 
             -- Use LspAttach autocommand to only map the following keys
@@ -183,28 +184,28 @@ return {
                     --
                     -- Goto
                     local opts = { buffer = ev.buf }
-                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend("force", opts, {desc="goto Declaration"}))
-                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend("force", opts, {desc="goto Definition"}))
-                    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, {desc="goto Type Definition"}))
+                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "goto Declaration" }))
+                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "goto Definition" }))
+                    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "goto Type Definition" }))
                     -- List
-                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend("force", opts, {desc="list Implementations"}))
-                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend("force", opts, {desc="list References"}))
+                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "list Implementations" }))
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "list References" }))
                     -- Show
-                    vim.keymap.set('n', '<C-S-j>', vim.lsp.buf.hover, vim.tbl_extend("force", opts, {desc="show Hover info"}))
-                    vim.keymap.set('n', '<C-S-k>', vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, {desc="show Signature help"})) -- originally <C-k>
+                    vim.keymap.set('n', '<C-S-j>', vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "show Hover info" }))
+                    vim.keymap.set('n', '<C-S-k>', vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "show Signature help" })) -- originally <C-k>
                     -- Workspaces
-                    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, vim.tbl_extend("force", opts, {desc="workspace - Add folder"}))
-                    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, vim.tbl_extend("force", opts, {desc="workspace - Remove folder"}))
+                    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, vim.tbl_extend("force", opts, { desc = "workspace - Add folder" }))
+                    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, vim.tbl_extend("force", opts, { desc = "workspace - Remove folder" }))
                     vim.keymap.set('n', '<leader>wl', function()
                         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end, vim.tbl_extend("force", opts, {desc="workspace - List folders"}))
+                    end, vim.tbl_extend("force", opts, { desc = "workspace - List folders" }))
                     -- Rename
-                    vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, vim.tbl_extend("force", opts, {desc="Rename - LSP"})) -- originally <leader>rn
+                    vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename - LSP" })) -- originally <leader>rn
                     -- Code interaction
-                    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, {desc="Code Action"}))
+                    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code Action" }))
                     vim.keymap.set('n', '<leader>cf', function()
                         vim.lsp.buf.format { async = true }
-                    end, vim.tbl_extend("force", opts, {desc="Code Format"}))
+                    end, vim.tbl_extend("force", opts, { desc = "Code Format" }))
                 end,
             })
         end,
@@ -253,7 +254,7 @@ return {
     },
     {
         'hrsh7th/nvim-cmp',                            -- https://github.com/hrsh7th/nvim-cmp
-        dependencies = { { 'hrsh7th/cmp-nvim-lsp' },                -- Completion sources for LSP
+        dependencies = { { 'hrsh7th/cmp-nvim-lsp' },   -- Completion sources for LSP
             { 'saadparwaiz1/cmp_luasnip' },            -- Completion sources LuaSnip
             { 'hrsh7th/cmp-path' },                    -- Completion from file paths
             { 'hrsh7th/cmp-buffer' },                  -- Completion from buffer
@@ -320,7 +321,7 @@ return {
                     { name = 'buffer' },
                     { name = 'nvim_lsp_signature_help' },
                     { name = 'orgmode' },
-                    { name = 'lazydev', group_index = 0 }
+                    { name = 'lazydev',                group_index = 0 }
                 },
             }
 

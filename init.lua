@@ -34,9 +34,9 @@ require("lazy").setup({
 })
 
 vim.filetype.add({
-  pattern = {
-    [".*/templates/.*%.yaml"] = "helm",
-  },
+    pattern = {
+        [".*/templates/.*%.yaml"] = "helm",
+    },
 })
 
 -----------------------------------------------------
@@ -158,9 +158,3 @@ end
 
 --vim.api.nvim_create_user_command('VimwikiIndex', 'echo "HELLO"',{})
 --call vimwiki#base#goto_index(<count>)
-
-
-
-
-
-
