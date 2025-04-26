@@ -1,6 +1,7 @@
 return {
     -- Fancy look incoming alert
     {
+        -- https://github.com/catppuccin/nvim
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
@@ -9,7 +10,10 @@ return {
             --vim.cmd.colorscheme "catppuccin"
         end,
     },
+
+
     {
+        -- https://github.com/ellisonleao/gruvbox.nvim
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
         config = function()
@@ -17,7 +21,10 @@ return {
             vim.cmd.colorscheme "gruvbox"
         end,
     },
+
+
     {
+        -- https://github.com/nvim-lualine/lualine.nvim
         "nvim-lualine/lualine.nvim",
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {
@@ -41,7 +48,10 @@ return {
             require("lualine").setup(opts)
         end,
     },
+
+
     {
+        -- https://github.com/catgoose/nvim-colorizer.lua
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
         opts = {
@@ -51,6 +61,7 @@ return {
         }
     },
     {
+        -- Command "Gitsign *"
         -- https://github.com/lewis6991/gitsigns.nvim
         'lewis6991/gitsigns.nvim',
         config = function(_, opts)

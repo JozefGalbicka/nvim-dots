@@ -1,8 +1,8 @@
 return {
     {
         -- https://github.com/neovim/nvim-lspconfig
-        -- https://wiki.archlinux.org/title/Language_Server_Protocol
-        -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+        -- LIST OF ARCH LSP PACKAGES - https://wiki.archlinux.org/title/Language_Server_Protocol
+        -- EXAMPLE CONFIGS - https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
         'neovim/nvim-lspconfig',
         config = function()
             local lspconfig = require('lspconfig')
@@ -214,6 +214,7 @@ return {
         end,
     },
 
+
     -- doesn't fucking work
     --{
     --    "msvechla/yaml-companion.nvim",
@@ -230,7 +231,11 @@ return {
     --    end,
     --},
     --
+
+
     {
+        -- Better autocompletion for Lua NVIM configs
+        -- https://github.com/folke/lazydev.nvim
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
         opts = {
@@ -242,9 +247,11 @@ return {
         },
     },
 
+
     {
         -- Snippet engine
-        'L3MON4D3/LuaSnip', -- https://github.com/L3MON4D3/LuaSnip
+        -- https://github.com/L3MON4D3/LuaSnip
+        'L3MON4D3/LuaSnip',
         dependencies = {
             { "rafamadriz/friendly-snippets" }
         },
@@ -255,8 +262,12 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
         end
     },
+
+
     {
-        'hrsh7th/nvim-cmp',                            -- https://github.com/hrsh7th/nvim-cmp
+        -- Command "CmpStatus"
+        -- https://github.com/hrsh7th/nvim-cmp
+        'hrsh7th/nvim-cmp',
         dependencies = { { 'hrsh7th/cmp-nvim-lsp' },   -- Completion sources for LSP
             { 'saadparwaiz1/cmp_luasnip' },            -- Completion sources LuaSnip
             { 'hrsh7th/cmp-path' },                    -- Completion from file paths

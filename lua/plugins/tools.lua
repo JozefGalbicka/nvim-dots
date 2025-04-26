@@ -1,13 +1,23 @@
 return {
     {
+        -- Commands "Colortils*"
+        -- https://github.com/max397574/colortils.nvim
         "max397574/colortils.nvim",
         cmd = "Colortils",
         config = true
     },
+
+
     {
+        -- Commands "Diff*"
+        -- https://github.com/sindrets/diffview.nvim
         'sindrets/diffview.nvim'
     },
+
+
     {
+        -- Commands "YAML*"
+        -- https://github.com/cuducos/yaml.nvim
         "cuducos/yaml.nvim",
         ft = { "yaml" }, -- optional
         dependencies = {
@@ -15,7 +25,10 @@ return {
             "nvim-telescope/telescope.nvim", -- optional
         },
     },
+
+
     {
+        -- Commands "PasteImage" or "Img*"
         -- https://github.com/HakonHarnes/img-clip.nvim
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
@@ -28,6 +41,8 @@ return {
             { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
         },
     },
+
+
     {
         -- https://github.com/vimwiki/vimwiki
         'vimwiki/vimwiki',
@@ -54,17 +69,29 @@ return {
         end,
 
     },
+
+
     {
+        -- Press ENTER to open links in .md or .tex
+        -- https://github.com/jghauser/follow-md-links.nvim
         'jghauser/follow-md-links.nvim'
     },
+
+
     {
+        -- Commands "Markdown*"
+        -- https://github.com/iamcco/markdown-preview.nvim
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
         --config = true -- idk it just sopped working if it was uncommented
     },
+
+
     {
+        -- Command "Org"
+        -- https://github.com/nvim-orgmode/orgmode
         'nvim-orgmode/orgmode',
         event = 'VeryLazy',
         ft = { 'org' },
@@ -100,7 +127,10 @@ return {
             -- })
         end,
     },
+
+
     {
+        -- Commands "Session*"
         -- https://github.com/rmagatti/auto-session
         'rmagatti/auto-session',
         dependencies = {
@@ -112,7 +142,11 @@ return {
             })
         end,
     },
+
+
     {
+        -- Commands "Sops*"
+        -- https://github.com/lucidph3nx/nvim-sops
         'lucidph3nx/nvim-sops',
         event = { 'BufEnter' },
         opts = {

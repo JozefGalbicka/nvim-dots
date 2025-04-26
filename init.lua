@@ -1,12 +1,16 @@
 -- https://stackoverflow.com/questions/75987806/why-is-my-neovim-plugin-not-loaded-despite-lazy-telling-me-it-is
 -- https://github.com/wimstefan/dotfiles/blob/master/config/nvim/init.lua#L1313-L1454
 --
+-- ##############################################################################
+-- REQUIREMENTS FROM https://github.com/nvim-tree/nvim-tree.lua
+-- ##############################################################################
 -- disable netrw in favor of nvim-tree at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
+-- ##############################################################################
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

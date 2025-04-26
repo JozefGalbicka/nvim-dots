@@ -1,5 +1,7 @@
 return {
     {
+        -- Commands "TS*"
+        -- https://github.com/nvim-treesitter/nvim-treesitter
         'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate",
         --cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
@@ -73,7 +75,10 @@ return {
             --\ THIS ONE IS CUSTOM
         end,
     },
+
+
     {
+        -- Commands "RenderMarkdown *"
         -- https://github.com/MeanderingProgrammer/render-markdown.nvim
         'MeanderingProgrammer/markdown.nvim',
         main = "render-markdown",

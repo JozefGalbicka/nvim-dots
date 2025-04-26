@@ -1,6 +1,8 @@
 return {
     {
-        'akinsho/toggleterm.nvim', -- https://github.com/akinsho/toggleterm.nvim
+        -- Commands "ToggleTerm*" and "Term*"
+        -- https://github.com/akinsho/toggleterm.nvim
+        'akinsho/toggleterm.nvim',
         version = "*",
         opts = {
             autochdir = true,
@@ -65,8 +67,12 @@ return {
             --    { desc = "Open float term" })
         end
     },
+
+
     {
-        'nanozuki/tabby.nvim', -- https://github.com/nanozuki/tabby.nvim
+        -- Commands "Tabby *"
+        -- https://github.com/nanozuki/tabby.nvim
+        'nanozuki/tabby.nvim',
         event = 'VimEnter',
         dependencies = 'nvim-tree/nvim-web-devicons',
         opts = {},
@@ -88,7 +94,10 @@ return {
 
 
     },
+
+
     {
+        -- Command "WhichKey"
         -- https://github.com/folke/which-key.nvim
         "folke/which-key.nvim",
         event = "VeryLazy",
@@ -98,7 +107,11 @@ return {
         end,
         config = true
     },
+
+
     {
+        -- Commands "Telescope *"
+        -- https://github.com/nvim-telescope/telescope.nvim
         'nvim-telescope/telescope.nvim',
         tag = '0.1.3',
         config = function(_, opts)
@@ -112,7 +125,11 @@ return {
         end,
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+
+
     {
+        -- Commands "NvimTree*"
+        -- https://github.com/nvim-tree/nvim-tree.lua
         "nvim-tree/nvim-tree.lua",
         --cmd = "NvimTreeToggle",
         opts = {
@@ -138,5 +155,4 @@ return {
             -- OLD -- vim.keymap.set('n', '<C-n>', vim.cmd.NvimTreeToggle, {})
         }
     },
-
 }
