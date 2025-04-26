@@ -72,11 +72,14 @@ return {
                 -- https://github.com/Allaman/nvim/blob/main/lua/vnext/plugins/completion.lua
                 settings = {
                     yaml = {
+
                         schemaStore = {
                             enable = true,
                             url = "https://www.schemastore.org/api/json/catalog.json",
                         },
-                        format = { enabled = false },
+                        format = {
+                            enable = true
+                        },
                         -- enabling this conflicts between Kubernetes resources, kustomization.yaml, and Helmreleases
                         validate = false,
                         schemas = {
