@@ -132,6 +132,12 @@ return {
         -- https://github.com/nvim-tree/nvim-tree.lua
         "nvim-tree/nvim-tree.lua",
         --cmd = "NvimTreeToggle",
+        init = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            -- set termguicolors to enable highlight groups
+            vim.opt.termguicolors = true
+        end,
         opts = {
             sync_root_with_cwd = true,
             renderer = { -- https://github.com/nvim-tree/nvim-tree.lua/discussions/1921?sort=old

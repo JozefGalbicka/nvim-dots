@@ -1,16 +1,6 @@
 -- https://stackoverflow.com/questions/75987806/why-is-my-neovim-plugin-not-loaded-despite-lazy-telling-me-it-is
 -- https://github.com/wimstefan/dotfiles/blob/master/config/nvim/init.lua#L1313-L1454
 --
--- ##############################################################################
--- REQUIREMENTS FROM https://github.com/nvim-tree/nvim-tree.lua
--- ##############################################################################
--- disable netrw in favor of nvim-tree at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
--- ##############################################################################
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -28,8 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 
--- https://lazy.folke.io/usage/structuring
--- https://lazy.folke.io/configuration
+-- Plugin Spec Reference - https://lazy.folke.io/spec
+-- Folder Structure - https://lazy.folke.io/usage/structuring
+-- Config options - https://lazy.folke.io/configuration
 -- https://github.com/Integralist/nvim/tree/main/lua/plugins
 require("lazy").setup({
     spec = {
@@ -46,16 +37,14 @@ vim.filetype.add({
 -----------------------------------------------------
 ----------- GENERAL
 -----------------------------------------------------
---vim
+vim.opt.termguicolors = true -- set termguicolors to enable highlight groups
+
 vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4  -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 vim.wo.number = true
-
---require'nvim-tree'.setup {}
---require 'colorizer'.setup {}
 
 vim.cmd('autocmd FileType yaml setlocal indentkeys-=0#')
 
