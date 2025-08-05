@@ -17,7 +17,7 @@ return {
             vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open diagnostics" })
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "goto prev diagnostic" })
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "goto next diagnostic" })
-            vim.keymap.set('n', '<leader>l', vim.diagnostic.setloclist, { desc = "diagnostic set locallist" }) -- CHECK WHAT THIS ONE EVEN DOES, originally mapped to <leader>q
+            vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "diagnostic set locallist" }) -- CHECK WHAT THIS ONE EVEN DOES, originally mapped to <leader>q
             -- end
 
             -- Use LspAttach autocommand to only map the following keys
