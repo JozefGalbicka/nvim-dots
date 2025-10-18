@@ -1,0 +1,2 @@
+- https://github.com/pynappo/dotfiles/blob/main/.config/nvim
+- https://github.com/WIttyJudge/dotfiles/blob/main/.config/nvim/lua/core/mappings.lua
