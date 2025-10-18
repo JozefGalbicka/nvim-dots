@@ -196,6 +196,7 @@ return {
         end
     },
 
+
     {
         -- https://github.com/rcarriga/nvim-dap-ui
         "rcarriga/nvim-dap-ui",
@@ -227,4 +228,41 @@ return {
             }
         end,
     },
+
+
+    -- TODO MAKE IT WORK, wanted to use it for AWS CFN
+    --{
+    --    -- Linter
+    --    -- https://github.com/mfussenegger/nvim-lint
+    --    "mfussenegger/nvim-lint",
+    --},
+
+
+    -- TODO FINISH
+    {
+        -- Code Formatter
+        -- https://github.com/stevearc/conform.nvim
+        'stevearc/conform.nvim',
+        opts = {
+            formatters_by_ft = {
+                python = { "black" },
+            },
+
+        },
+        config = function(_, opts)
+            require("conform").setup(opts)
+
+            vim.api.nvim_create_user_command("ConformFormat", function(args)
+                local range = nil
+                if args.count ~= -1 then
+                    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+                    range = {
+                        start = { args.line1, 0 },
+                        ["end"] = { args.line2, end_line:len() },
+                    }
+                end
+                require("conform").format({ async = true, lsp_format = "fallback", range = range })
+            end, { range = true })
+        end,
+    }
 }
