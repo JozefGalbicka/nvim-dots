@@ -3,13 +3,13 @@ return {
         -- https://github.com/neovim/nvim-lspconfig
         -- LIST OF ARCH LSP PACKAGES - https://wiki.archlinux.org/title/Language_Server_Protocol
         -- EXAMPLE CONFIGS - https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+        -- Default configs: :help lspconfig-all
         'neovim/nvim-lspconfig',
         config = function()
-            local lspconfig = require('lspconfig')
-
             local configs = require('plugins.lsp.configs')
             for lsp, config in pairs(configs) do
-                lspconfig[lsp].setup(config)
+                vim.lsp.config(lsp, config)
+                vim.lsp.enable(lsp)
             end
 
             -- Diagnostics.
