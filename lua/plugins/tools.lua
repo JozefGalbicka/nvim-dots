@@ -154,5 +154,32 @@ return {
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
+    },
+
+    {
+        -- https://github.com/apayu/nvim-ansible-vault
+        'apayu/nvim-ansible-vault',
+        config = function()
+            --require("ansible-vault").setup({
+            --vault_identities = {
+            --    "dev@.vault_pass_dev",
+            --    "prod@./get_prod_password.sh"
+            --}
+            --})
+            require("ansible-vault").setup({
+                vault_password_files = { '.vault_pass', '.vault-pass' },
+                --vault_id = 'default',
+                patterns = {
+                    "*/host_vars/*/vault.yml", -- Default: host variables vault files
+                    "*/group_vars/*/vault.yml", -- Default: group variables vault files
+                    "*/host_vars/*/crypted", -- Default: host variables vault files
+                    "*/group_vars/*/crypted", -- Default: group variables vault files
+                    "*/vault.yml",  -- Any vault.yml file
+                    "*/secrets/*.yml", -- Any .yml file in secrets directories
+                    "*/encrypted/*" -- Any file in encrypted directories
+                }
+            })
+        end,
+        event = "BufReadPre */crypted",
     }
 }
