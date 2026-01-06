@@ -159,28 +159,28 @@ return {
             -- OLD -- vim.keymap.set('n', '<C-n>', vim.cmd.NvimTreeToggle, {})
         }
     },
+
     {
-        -- :Telescope projects
-        -- https://github.com/ahmedkhalf/project.nvim
-        "ahmedkhalf/project.nvim",
+        'DrKJeff16/project.nvim',
+        dependencies = { -- OPTIONAL
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'ibhagwan/fzf-lua',
+        },
+        opts = {},
         config = function(_, opts)
-            require("project_nvim").setup(opts)
+            require('project').setup(opts)
             require('telescope').load_extension('projects')
-
-            -- EXAMPLE, REMOVE ME
-            --local builtin = require('telescope.builtin')
-            --vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "FFile" })
-            --vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "FGrep" })
-            --vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "FBuffers" })
-            --vim.keymap.set('n', '<leader>fp', builtin.help_tags, { desc = "FTags" })
-            vim.keymap.set(
-                "n",
-                "<leader>fp",
-                function() vim.cmd([[Telescope projects]]) end,
-                { noremap = true }
-            )
         end,
-
+        keys = {
+            {
+                '<leader>fp',
+                function()
+                    vim.cmd.ProjectTelescope()
+                end,
+                desc = 'Switch project',
+            },
+        },
     },
 
     {
