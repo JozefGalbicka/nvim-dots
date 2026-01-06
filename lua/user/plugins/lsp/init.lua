@@ -6,7 +6,7 @@ return {
         -- Default configs: :help lspconfig-all
         'neovim/nvim-lspconfig',
         config = function()
-            local configs = require('plugins.lsp.configs')
+            local configs = require('user.plugins.lsp.configs')
             for lsp, config in pairs(configs) do
                 vim.lsp.config(lsp, config)
                 vim.lsp.enable(lsp)

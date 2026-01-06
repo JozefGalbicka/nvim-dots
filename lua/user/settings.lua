@@ -1,6 +1,8 @@
 -----------------------------------------------------
 ----------- GENERAL
 -----------------------------------------------------
+vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+
 vim.opt.termguicolors = true -- set termguicolors to enable highlight groups
 
 vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
@@ -13,7 +15,7 @@ vim.wo.number = true
 -----------------------------------------------------
 ----------- SHORTCUTS
 -----------------------------------------------------
-local funcs = require("functions")
+local funcs = require("user.functions")
 
 -- This is now set in tmux integration plugin
 --vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
