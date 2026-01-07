@@ -61,6 +61,7 @@ vim.cmd.filetype "plugin indent on"
 vim.filetype.add({
     pattern = {
         [".*/templates/.*%.yaml"] = "helm",
+        ["~/.kube/config.*"] = "yaml",
     },
 })
 
