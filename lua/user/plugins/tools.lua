@@ -4,7 +4,14 @@ return {
         -- https://github.com/max397574/colortils.nvim
         "max397574/colortils.nvim",
         cmd = "Colortils",
-        config = true
+        opts = {
+        },
+        config = function(_, opts)
+            require("colortils").setup(opts)
+        end,
+        keys = {
+            { "<leader>oc", "<cmd>Colortils<cr>", desc = "Colortils" },
+        },
     },
 
 
@@ -16,10 +23,33 @@ return {
 
 
     {
+        -- Command "Gitsigns *"
+        -- https://github.com/lewis6991/gitsigns.nvim
+        'lewis6991/gitsigns.nvim',
+        event = "BufReadPre",
+        config = function(_, opts)
+            require("gitsigns").setup(opts)
+            vim.keymap.set('n', '<leader>gp', ":Gitsigns preview_hunk_inline<CR>", {})
+        end,
+        keys = {
+            { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",      desc = "Stage Hunk" },
+            { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>", desc = "Undo Stage Hunk" },
+            { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",      desc = "Reset Hunk" },
+            { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",    desc = "Preview Hunk" },
+            { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",      desc = "Blame Line" },
+            { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",        desc = "Diff This File" },
+        },
+    },
+
+
+    {
         -- Commands "YAML*"
         -- https://github.com/cuducos/yaml.nvim
         "cuducos/yaml.nvim",
         ft = { "yaml" }, -- optional
+        keys = {
+            { "<leader>fy", "<cmd>YAMLTelescope<cr>", desc = "Search YAML keys" }
+        },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-telescope/telescope.nvim", -- optional
@@ -38,7 +68,7 @@ return {
         },
         keys = {
             -- suggested keymap
-            { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+            { "<leader>op", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
         },
     },
 
@@ -93,6 +123,7 @@ return {
         -- Command "Org"
         -- https://github.com/nvim-orgmode/orgmode
         'nvim-orgmode/orgmode',
+        enabled = false,
         event = 'VeryLazy',
         ft = { 'org' },
         config = function()
@@ -136,6 +167,9 @@ return {
         dependencies = {
             'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
         },
+        keys = {
+            { "<leader>fs", "<cmd>AutoSession search<cr>", desc = "Search sessions (Telescope)" },
+        },
         config = function()
             require('auto-session').setup({
                 auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
@@ -153,7 +187,11 @@ return {
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
-        }
+        },
+        keys = {
+            { "<leader>ose", "<cmd>SopsEncrypt<cr>", desc = "Encrypt file with Sops" },
+            { "<leader>osd", "<cmd>SopsDecrypt<cr>", desc = "Decrypt file with Sops" },
+        },
     },
 
     {
@@ -170,13 +208,13 @@ return {
                 vault_password_files = { '.vault_pass', '.vault-pass' },
                 --vault_id = 'default',
                 patterns = {
-                    "*/host_vars/*/vault.yml", -- Default: host variables vault files
+                    "*/host_vars/*/vault.yml",  -- Default: host variables vault files
                     "*/group_vars/*/vault.yml", -- Default: group variables vault files
-                    "*/host_vars/*/crypted", -- Default: host variables vault files
-                    "*/group_vars/*/crypted", -- Default: group variables vault files
-                    "*/vault.yml",  -- Any vault.yml file
-                    "*/secrets/*.yml", -- Any .yml file in secrets directories
-                    "*/encrypted/*" -- Any file in encrypted directories
+                    "*/host_vars/*/crypted",    -- Default: host variables vault files
+                    "*/group_vars/*/crypted",   -- Default: group variables vault files
+                    "*/vault.yml",              -- Any vault.yml file
+                    "*/secrets/*.yml",          -- Any .yml file in secrets directories
+                    "*/encrypted/*"             -- Any file in encrypted directories
                 }
             })
         end,
