@@ -194,30 +194,37 @@ return {
         },
     },
 
+    --{
+    --    "outerLeitmotiv/nvim-ansible-vault",
+    --    ft = "yamle",
+    --    --ft = "yaml.ansible",
+    --    dependencies = {
+    --        "nvim-treesitter/nvim-treesitter",
+    --    },
+    --},
+
     {
         -- https://github.com/apayu/nvim-ansible-vault
         'apayu/nvim-ansible-vault',
         config = function()
-            --require("ansible-vault").setup({
-            --vault_identities = {
-            --    "dev@.vault_pass_dev",
-            --    "prod@./get_prod_password.sh"
-            --}
-            --})
             require("ansible-vault").setup({
                 vault_password_files = { '.vault_pass', '.vault-pass' },
-                --vault_id = 'default',
+                vault_id = 'default',
+                --vault_identities = {
+                --    "dev@.vault_pass_dev",
+                --    "prod@./get_prod_password.sh"
+                --}
                 patterns = {
                     "*/host_vars/*/vault.yml",  -- Default: host variables vault files
                     "*/group_vars/*/vault.yml", -- Default: group variables vault files
                     "*/host_vars/*/crypted",    -- Default: host variables vault files
                     "*/group_vars/*/crypted",   -- Default: group variables vault files
-                    "*/vault.yml",              -- Any vault.yml file
-                    "*/secrets/*.yml",          -- Any .yml file in secrets directories
-                    "*/encrypted/*"             -- Any file in encrypted directories
+                --    "*/vault.yml",              -- Any vault.yml file
+                --    "*/secrets/*.yml",          -- Any .yml file in secrets directories
+                --    "*/encrypted/*"             -- Any file in encrypted directories
                 }
             })
         end,
-        event = "BufReadPre */crypted",
+        --event = "BufReadPre */crypted",
     }
 }
