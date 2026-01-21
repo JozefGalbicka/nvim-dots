@@ -36,6 +36,7 @@ return {
                 "yaml",
                 "make",
                 "helm",
+                "go",
             },
             ignore_install = { 'org' },
             --incremental_selection = {
