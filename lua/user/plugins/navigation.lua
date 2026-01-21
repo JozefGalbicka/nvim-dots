@@ -31,7 +31,8 @@ return {
                 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opt)
                 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opt)
                 vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opt)
-                vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opt)
+                -- Disabled, not needed really
+                --vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opt)
             end
 
             -- if you only want these mappings for toggle term use term://*toggleterm#* instead
