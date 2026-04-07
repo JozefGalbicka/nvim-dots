@@ -6,9 +6,21 @@ return {
         -- Default configs: :help lspconfig-all
         'neovim/nvim-lspconfig',
         config = function()
-            local configs = require('user.plugins.lsp.configs')
-            for lsp, config in pairs(configs) do
-                vim.lsp.config(lsp, config)
+            --local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            local configs = {
+                "gopls",
+                "pyright",
+                "clangd",
+                "terraformls",
+                "ts_ls",
+                "bashls",
+                "helm_ls",
+                "lua_ls",
+                "yamlls",
+            }
+
+            for _, lsp in ipairs(configs) do
                 vim.lsp.enable(lsp)
             end
 

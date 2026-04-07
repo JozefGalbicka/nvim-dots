@@ -32,7 +32,8 @@ return {
                 'toggleterm'
             },
             sections = {
-                lualine_x = { 'encoding', 'fileformat', 'filetype', get_schema },
+                lualine_x = { 'encoding', 'fileformat', 'filetype', 'lsp_status' },
+                --lualine_x = { 'encoding', 'fileformat', 'filetype', get_schema, 'lsp_status' },
             },
         },
         -- https://www.arthurkoziel.com/json-schemas-in-neovim/
