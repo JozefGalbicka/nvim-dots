@@ -114,7 +114,6 @@ return {
         -- Commands "Telescope *"
         -- https://github.com/nvim-telescope/telescope.nvim
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.3',
         config = function(_, opts)
             require("telescope").setup(opts)
 
