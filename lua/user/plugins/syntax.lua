@@ -2,18 +2,41 @@ return {
     {
         -- Commands "TS*"
         -- https://github.com/nvim-treesitter/nvim-treesitter
+        -- checkhealth vim.treesitter
+        -- checkhealth nvim-treesitter
         'nvim-treesitter/nvim-treesitter',
         build = ":TSUpdate",
+        lazy = false,
+        branch = "main",
         --cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         opts = {
-            highlight = { enable = true },
-            indent = { enable = false },
-            ensure_installed = {
+            ignore_install = { 'org' },
+            --incremental_selection = {
+            --  enable = true,
+            --  keymaps = {
+            --    init_selection = "<C-space>",
+            --    node_incremental = "<C-space>",
+            --    scope_incremental = false,
+            --    node_decremental = "<bs>",
+            --  },
+            --},
+            --textobjects = {
+            --  move = {
+            --    enable = true,
+            --    goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+            --    goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+            --    goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+            --    goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+            --  },
+        },
+        ---@param opts TSConfig
+        config = function(_, opts)
+            local ensureInstalled = {
                 "terraform",
                 "hcl",
                 "bash",
                 "c",
-                --"diff",
+                "diff",
                 "doxygen",
                 "html",
                 --"javascript",
@@ -37,40 +60,26 @@ return {
                 "make",
                 "helm",
                 "go",
-            },
-            ignore_install = { 'org' },
-            --incremental_selection = {
-            --  enable = true,
-            --  keymaps = {
-            --    init_selection = "<C-space>",
-            --    node_incremental = "<C-space>",
-            --    scope_incremental = false,
-            --    node_decremental = "<bs>",
-            --  },
-            --},
-            --textobjects = {
-            --  move = {
-            --    enable = true,
-            --    goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-            --    goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-            --    goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-            --    goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-            --  },
-        },
-        ---@param opts TSConfig
-        config = function(_, opts)
-            if type(opts.ensure_installed) == "table" then
-                ---@type table<string, boolean>
-                local added = {}
-                opts.ensure_installed = vim.tbl_filter(function(lang)
-                    if added[lang] then
-                        return false
-                    end
-                    added[lang] = true
-                    return true
-                end, opts.ensure_installed)
-            end
-            require("nvim-treesitter.configs").setup(opts)
+            }
+            local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+            local parsersToInstall = vim.iter(ensureInstalled)
+                :filter(function(parser)
+                    return not vim.tbl_contains(alreadyInstalled, parser)
+                end)
+                :totable()
+            require('nvim-treesitter').install(parsersToInstall)
+
+
+            require("nvim-treesitter").setup(opts)
+            vim.api.nvim_create_autocmd('FileType', {
+                callback = function()
+                    -- Enable treesitter highlighting and disable regex syntax
+                    pcall(vim.treesitter.start)
+                    -- Enable treesitter-based indentation
+                    --vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
+            --vim.treesitter.start()
             -- THIS ONE IS CUSTOM
             vim.treesitter.language.register('markdown', 'vimwiki')
             --\ THIS ONE IS CUSTOM
