@@ -14,6 +14,11 @@ return {
     -- stolen from here
     -- https://github.com/Allaman/nvim/blob/main/lua/vnext/plugins/completion.lua
     settings = {
+        redhat = {
+            telemetry = {
+                enabled = false
+            }
+        },
         yaml = {
 
             schemaStore = {
