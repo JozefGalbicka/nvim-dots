@@ -52,6 +52,11 @@ vim.keymap.set({ 'n' }, '<A-r>', '', {
 -- nvim-tree fix
 --vim.keymap.set('n', '<leader>w', change_root_to_global_cwd, opts('Change Root To Global CWD'))
 
+-- Diff shortcuts
+vim.api.nvim_set_keymap('n', '<leader>dd', ':diffthis<CR>', { noremap = true, silent = true })  -- Start diff for current buffer
+vim.api.nvim_set_keymap('n', '<leader>do', ':windo diffoff<CR>', { noremap = true, silent = true }) -- Diff off all windows
+vim.api.nvim_set_keymap('n', '<leader>dn', ':windo diffthis<CR>', { noremap = true, silent = true }) -- Diff all windows
+
 -----------------------------------------------------
 ----------- FILETYPES
 -----------------------------------------------------
