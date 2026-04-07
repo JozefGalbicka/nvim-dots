@@ -164,17 +164,20 @@ return {
         -- Commands "Session*"
         -- https://github.com/rmagatti/auto-session
         'rmagatti/auto-session',
+        lazy = false,
         dependencies = {
             'nvim-telescope/telescope.nvim', -- Only needed if you want to use sesssion lens
         },
         keys = {
             { "<leader>fs", "<cmd>AutoSession search<cr>", desc = "Search sessions (Telescope)" },
         },
-        config = function()
-            require('auto-session').setup({
-                auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-            })
-        end,
+        ---enables autocomplete for opts
+        ---@module "auto-session"
+        ---@type AutoSession.Config
+        opts = {
+            suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+            -- log_level = 'debug',
+        }
     },
 
 
@@ -219,9 +222,9 @@ return {
                     "*/group_vars/*/vault.yml", -- Default: group variables vault files
                     "*/host_vars/*/crypted",    -- Default: host variables vault files
                     "*/group_vars/*/crypted",   -- Default: group variables vault files
-                --    "*/vault.yml",              -- Any vault.yml file
-                --    "*/secrets/*.yml",          -- Any .yml file in secrets directories
-                --    "*/encrypted/*"             -- Any file in encrypted directories
+                    --    "*/vault.yml",              -- Any vault.yml file
+                    --    "*/secrets/*.yml",          -- Any .yml file in secrets directories
+                    --    "*/encrypted/*"             -- Any file in encrypted directories
                 }
             })
         end,
