@@ -139,11 +139,11 @@ return {
         opts = {
             sync_root_with_cwd = true,
             renderer = { -- https://github.com/nvim-tree/nvim-tree.lua/discussions/1921?sort=old
-                --root_folder_label = ":t",
-                root_folder_label = function(path)
-                    path = path:gsub(os.getenv("HOME"), "~", 1)
-                    return path:gsub("([a-zA-Z])[a-z]+", "%1") .. path:gsub(".*[^a-zA-Z].?", "")
-                end,
+                root_folder_label = ":t", -- :t
+                --root_folder_label = function(path)
+                --    path = path:gsub(os.getenv("HOME"), "~", 1)
+                --    return path:gsub("([a-zA-Z])[a-z]+", "%1") .. path:gsub(".*[^a-zA-Z].?", "")
+                --end,
                 indent_markers = {
                     enable = true,
                     inline_arrows = true
