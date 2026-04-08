@@ -18,6 +18,7 @@ return {
                 "helm_ls",
                 "lua_ls",
                 "yamlls",
+                "ansiblels",
             }
 
             for _, lsp in ipairs(configs) do
