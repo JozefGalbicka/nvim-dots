@@ -19,6 +19,7 @@ return {
                 "lua_ls",
                 "yamlls",
                 "ansiblels",
+                "kcl",
             }
 
             for _, lsp in ipairs(configs) do

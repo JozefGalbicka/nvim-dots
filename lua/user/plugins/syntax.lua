@@ -2,6 +2,7 @@ return {
     {
         -- Commands "TS*"
         -- https://github.com/nvim-treesitter/nvim-treesitter
+        -- SUPPORTED LANGUAGES - https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
         -- checkhealth vim.treesitter
         -- checkhealth nvim-treesitter
         'nvim-treesitter/nvim-treesitter',
@@ -60,6 +61,7 @@ return {
                 "make",
                 "helm",
                 "go",
+                "kcl",
             }
             local alreadyInstalled = require('nvim-treesitter.config').get_installed()
             local parsersToInstall = vim.iter(ensureInstalled)
