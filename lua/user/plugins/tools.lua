@@ -237,7 +237,8 @@ return {
         version = "*", -- Latest stable release
         config = function()
             ---@type opencode.Opts
-            local opencode_cmd = 'opencode --port'
+            local opencode_cmd = 'opencode'
+            --local opencode_cmd = 'opencode --port'
             ---@type snacks.terminal.Opts
             local snacks_terminal_opts = {
                 win = {
