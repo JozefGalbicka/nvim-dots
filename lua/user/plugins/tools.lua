@@ -108,14 +108,37 @@ return {
     },
 
 
+    --{
+    --    -- Commands "Markdown*"
+    --    -- https://github.com/iamcco/markdown-preview.nvim
+    --    "iamcco/markdown-preview.nvim",
+    --    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    --    ft = { "markdown" },
+    --    build = function() vim.fn["mkdp#util#install"]() end,
+    --    --config = true -- idk it just sopped working if it was uncommented
+    --},
     {
-        -- Commands "Markdown*"
-        -- https://github.com/iamcco/markdown-preview.nvim
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-        --config = true -- idk it just sopped working if it was uncommented
+        "selimacerbas/markdown-preview.nvim",
+        dependencies = { "selimacerbas/live-server.nvim" },
+        config = function()
+            require("markdown_preview").setup({
+                -- all optional; sane defaults shown
+                instance_mode = "takeover", -- "takeover" (one tab) or "multi" (tab per instance)
+                port = 0,                   -- 0 = auto (8421 for takeover, OS-assigned for multi)
+                open_browser = true,
+                default_theme = "dark",     -- "dark" or "light"; initial preview theme
+                debounce_ms = 300,
+            })
+            --require("markdown_preview").setup({
+            --    host = "0.0.0.0",
+            --    open_browser = false,
+            --    hooks = {
+            --        on_start = function(url)
+            --            vim.notify("Markdown Preview: " .. url, vim.log.levels.INFO)
+            --        end,
+            --    },
+            --})
+        end,
     },
 
 
