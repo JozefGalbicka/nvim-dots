@@ -298,6 +298,7 @@ return {
     },
 
     {
+        -- https://github.com/coder/claudecode.nvim
         "coder/claudecode.nvim",
         dependencies = { "folke/snacks.nvim" },
         config = true,
