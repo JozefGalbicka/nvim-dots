@@ -73,6 +73,16 @@ vim.filetype.add({
 -----------------------------------------------------
 ----------- AUTOCMDS
 -----------------------------------------------------
+-- `nvim /path/to/dir` -> make that dir the cwd
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local arg = vim.fn.argv(0)
+        if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+            vim.fn.chdir(arg)
+        end
+    end,
+})
+
 --vim.api.nvim_create_autocmd("DirChanged", {
 --    pattern = "*",
 --    command = "echo 'sad'"
