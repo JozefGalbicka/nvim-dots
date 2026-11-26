@@ -12,6 +12,10 @@ vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 vim.wo.number = true
 
+-- Don't save terminals in sessions (auto-session). A restored terminal is just a new
+-- shell that toggleterm half-adopts as a duplicate term (breaks <C-q> and resizing)
+vim.opt.sessionoptions:remove('terminal')
+
 -----------------------------------------------------
 ----------- SHORTCUTS
 -----------------------------------------------------
