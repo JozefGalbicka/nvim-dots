@@ -20,6 +20,19 @@ return {
         config = function(_, opts)
             require("toggleterm").setup(opts)
 
+            -- <C-h> from Claude (full height on the right) goes left from its top row, i.e. to the code,
+            -- not from its bottom prompt row, which sits next to the lower terminal
+            local function claude_left()
+                local row, col = unpack(vim.api.nvim_win_get_position(0))
+                for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+                    local r, c = unpack(vim.api.nvim_win_get_position(w))
+                    if vim.api.nvim_win_get_config(w).relative == '' and r <= row and row < r + vim.api.nvim_win_get_height(w)
+                        and c + vim.api.nvim_win_get_width(w) + 1 == col then
+                        return vim.api.nvim_set_current_win(w)
+                    end
+                end
+            end
+
             function _G.set_terminal_keymaps()
                 local opt = { buffer = 0 }
                 -- Close only the focused toggleterm (plain :ToggleTerm closes all open ones)
@@ -34,7 +47,9 @@ return {
                 --vim.api.nvim_set_keymap("t", "<C-e>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
                 --vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opt)
                 --vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opt)
-                vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opt)
+                vim.keymap.set('t', '<C-h>', function()
+                    if vim.bo.filetype == 'claudecode' then claude_left() else vim.cmd.wincmd('h') end
+                end, opt)
                 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opt)
                 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opt)
                 vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opt)
