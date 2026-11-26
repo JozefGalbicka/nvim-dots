@@ -59,7 +59,7 @@ return {
                 --hidden = true,
                 hidden = false,
                 direction = "horizontal",
-                on_open = function(term)
+                on_open = function()
                     vim.cmd("startinsert!")
                 end,
             })
@@ -69,6 +69,11 @@ return {
 
             vim.keymap.set("n", "<leader>q", "<cmd>lua _buildterm_toggle()<CR>",
                 { noremap = true, silent = true, desc = "open lower term" })
+            -- Enlarge lower term while focused (TermEnter covers the first open), shrink on leave
+            vim.api.nvim_create_autocmd({ 'WinEnter', 'TermEnter' },
+                { pattern = 'term://*toggleterm#8', command = 'resize 30' })
+            vim.api.nvim_create_autocmd('WinLeave',
+                { pattern = 'term://*toggleterm#8', command = 'resize 8' })
             -- end
 
             -- Explicit count instead of open_mapping: plain :ToggleTerm reopens the
