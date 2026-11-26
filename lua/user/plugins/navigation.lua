@@ -22,7 +22,15 @@ return {
 
             function _G.set_terminal_keymaps()
                 local opt = { buffer = 0 }
-                vim.keymap.set('t', '<C-q>', vim.cmd.ToggleTerm, opt)
+                -- Close only the focused toggleterm (plain :ToggleTerm closes all open ones)
+                vim.keymap.set('t', '<C-q>', function()
+                    local id = vim.b.toggle_number
+                    if id then
+                        vim.cmd(id .. 'ToggleTerm')
+                    else
+                        vim.cmd.ToggleTerm()
+                    end
+                end, opt)
                 --vim.api.nvim_set_keymap("t", "<C-e>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
                 --vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opt)
                 --vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opt)
