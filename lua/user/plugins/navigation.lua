@@ -196,7 +196,7 @@ return {
             {
                 '<leader>fp',
                 function()
-                    vim.cmd.ProjectTelescope()
+                    vim.cmd.Telescope('projects')
                 end,
                 desc = 'Switch project',
             },
