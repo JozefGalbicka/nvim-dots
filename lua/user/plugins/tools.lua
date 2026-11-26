@@ -301,7 +301,37 @@ return {
         -- https://github.com/coder/claudecode.nvim
         "coder/claudecode.nvim",
         dependencies = { "folke/snacks.nvim" },
-        config = true,
+        config = function(_, opts)
+            require("claudecode").setup(opts)
+
+            -- Pin Claude's width: opening/closing other windows (e.g. nvim-tree while Claude sits
+            -- above the lower term) hands their columns to Claude, so put its width back after
+            -- every window open/close. Any other resize (manual, <C-w>=) becomes the new width
+            local width, restoring
+            local function claude_win()
+                for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+                    if vim.bo[vim.api.nvim_win_get_buf(w)].filetype == 'claudecode' then return w end
+                end
+            end
+            vim.api.nvim_create_autocmd({ 'WinNew', 'WinClosed' }, {
+                callback = function()
+                    restoring = true
+                    vim.schedule(function()
+                        restoring = false
+                        local win = claude_win()
+                        if not win then return end
+                        if width then vim.api.nvim_win_set_width(win, width) end
+                        width = vim.api.nvim_win_get_width(win)
+                    end)
+                end,
+            })
+            vim.api.nvim_create_autocmd('WinResized', {
+                callback = function()
+                    local win = claude_win()
+                    if win and not restoring then width = vim.api.nvim_win_get_width(win) end
+                end,
+            })
+        end,
         -- `cmd` lets lazy.nvim create command stubs that load the plugin on first use,
         -- so `:ClaudeCode` and friends work on a fresh start. Without it, a keys-only
         -- spec defers loading until a <leader>a* mapping is pressed and the commands
