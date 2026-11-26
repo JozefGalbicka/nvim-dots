@@ -7,7 +7,6 @@ return {
         opts = {
             autochdir = true,
             persist_mode = false,
-            open_mapping = [[<leader>r]],
             insert_mappings = false,
             terminal_mappings = false,
             direction = 'float',
@@ -64,8 +63,11 @@ return {
                 { noremap = true, silent = true, desc = "open lower term" })
             -- end
 
-            --vim.keymap.set('n', '<leader>r', function() vim.cmd.ToggleTerm("direction='float'") end,
-            --    { desc = "Open float term" })
+            -- Explicit count instead of open_mapping: plain :ToggleTerm reopens the
+            -- last closed "terminal view" (e.g. the lower term) instead of the float
+            vim.keymap.set('n', '<leader>r', function()
+                vim.cmd(math.max(vim.v.count, 1) .. 'ToggleTerm')
+            end, { noremap = true, silent = true, desc = "toggle float term" })
         end
     },
 
